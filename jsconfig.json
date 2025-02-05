@@ -5,6 +5,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js"],
+    "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js", "src/icons/index.tsx"],
     "exclude": ["node_modules"]
 }

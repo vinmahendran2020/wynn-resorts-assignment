@@ -4,6 +4,9 @@
 
 @layer base {
   /* Todo common effects */
+  h1 {
+    @apply text-medium-h5 text-title;
+  }
 }
 
 :root {
