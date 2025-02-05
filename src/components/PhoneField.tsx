@@ -1,60 +1,86 @@
-import { Country } from '@/types/country'
-import { ChangeEvent, FC, ReactNode } from 'react'
-import DialCodeSelector from './CountryCodeDropDown'
-import TextField from './TextField'
+import React, { InputHTMLAttributes, forwardRef } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 
-interface PhoneFieldProps {
+import cn from './utils/classnames'
+import DialCodeSelector from './CountryCodeDropDown'
+
+interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
   containerClass?: string
   'data-testid'?: string
   disabled?: boolean
-  errorClassName?: string
-  errorMessage?: ReactNode
+  errorMessage?: React.ReactNode
   isError?: boolean
   label?: string
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-  onCodeChange?: (code: Country) => void
-  pattern?: string
-  phoneExample?: string
-  placeholder?: string
-  value?: string
   name: string
+  pattern?: any
+  placeholder?: string
+  ref?: any
   register?: UseFormRegister<any>
+  required?: boolean
+  type?: string
 }
-const PhoneField: FC<PhoneFieldProps> = ({
-  className = '',
-  containerClass = 'w-full flex flex-col',
-  disabled = false,
-  errorClassName,
-  onChange,
-  onCodeChange,
-  value = '',
-  isError,
-  phoneExample,
-  label = '',
-  name,
-  ...props
-}) => {
+
+const PhoneField = (
+  {
+    autoFocus,
+    className = '',
+    disabled,
+    errorMessage,
+    isError,
+    label = '',
+    title = '',
+    placeholder = '',
+    name = 'text-input',
+    register,
+    required = false,
+    pattern,
+    type = 'text',
+    ...props
+  }: FieldProps
+) => {
   return (
-    <div className="flex items-center gap-2">
-      <DialCodeSelector onChange={onCodeChange} />
-      <TextField
-        autoFocus
-        className={className}
-        containerClass={containerClass}
+    <div>
+      {title ? <div className="text-medium-b3 p-1">{title}</div> : null}
+      {label && (
+        <label
+          className={cn(
+            'text-medium-b3 text-darkgray-500 peer-hover:text-blue peer-focus:text-blue transition-colors',
+            disabled ? 'text-darkgray-30' : 'text-darkgray-500',
+            isError &&
+            'text-red-80 peer-focus:text-red-80 peer-[&:not(:placeholder-shown)]:text-red-80 hover:border-red-80 peer-hover:text-red-80',
+          )}
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      )}
+      <DialCodeSelector onChange={() => {}} />
+      <input
+        autoFocus={autoFocus}
+        className={cn(
+          'bg-white px-4 py-3 text-regular-b2 text-darkgray placeholder-darkgray-30 placeholder:regular-b4 bg-transparent rounded-lg border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
+          isError &&
+          'border-red-80 focus:border-red-80 placeholder-red-80 hover:border-red-80 animate-shake',
+          disabled && 'hover:border-lightgray-120',
+          label && 'mt-1',
+          className,
+        )}
         disabled={disabled}
-        errorClassName={errorClassName}
-        errorMessage={'Invalid phone number'}
-        isError={isError}
-        label={label}
         name={name}
-        onChange={onChange}
-        type="tel"
-        register={props.register}
-        value={value}
+        placeholder={placeholder}
+        type={type}
+        {...register?.(name, { required, pattern })}
         {...props}
       />
+      {isError && errorMessage && (
+        <div
+          className={'text-red text-regular-b4 mt-1'}
+          data-testid={`${props['data-testid']}-error`}
+        >
+          {isError && errorMessage}
+        </div>
+      )}
     </div>
   )
 }

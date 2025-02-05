@@ -1,12 +1,12 @@
-import { FC, useState } from 'react'
 import Image from 'next/image'
+import { FC, useRef, useState } from 'react'
 
-import Dropdown from './Dropdown'
-import Row from './Row'
+import { countriesList, Country } from '@/types/country'
 import Panel from './Panel'
+import Row from './Row'
 import TextField from './TextField'
 import cn from './utils/classnames'
-import { countriesList, Country } from '@/types/country'
+import useOutsideClick from '@/hooks/useOutsideEvent'
 
 interface CountrySelectorProps {
   className?: string
@@ -14,20 +14,14 @@ interface CountrySelectorProps {
 }
 
 const CountrySelector: FC<CountrySelectorProps> = ({
-  onChange,
   className,
 }) => {
-  const [selected, setSelected] = useState<Country>()
-  const [searchQuery, setSearchQuery] = useState('')
-  const [closeDropdown, setCloseDropdown] = useState(false)
-  const onClick = (data: Country) => {
-    setSelected(data)
-    onChange?.(data)
-    setCloseDropdown(true)
-  }
+  const [selected, setSelected] = useState<string>()
+  const [openDropDown, setOpenDropdown] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
   const filteredCountries = countriesList.filter((item) => {
-    const query = searchQuery?.toLowerCase()
+    const query = selected?.toLowerCase() || ''
     return (
       item?.name?.toLowerCase()?.includes(query) ||
       item?.phone?.some((phone) => phone.includes(query))
@@ -35,13 +29,14 @@ const CountrySelector: FC<CountrySelectorProps> = ({
   })
 
   const items = filteredCountries.length > 0 ? filteredCountries : countriesList
+
   const options = items.map((item, index) => {
     const { image, name } = item
     return (
       <Row
         className="py-2 px-3 cursor-pointer hover:bg-lightgray-80 rounded-lg gap-2 items-center"
         key={index}
-        onClick={() => onClick(item)}
+        onClick={() => setSelected(item.name)}
       >
         <Row className="w-full text-start items-center gap-2">
           <Image alt="falg" height={15} src={image} width={20} />
@@ -53,37 +48,38 @@ const CountrySelector: FC<CountrySelectorProps> = ({
     )
   })
 
+  useOutsideClick({
+    handler: () => setOpenDropdown(false),
+    ref,
+  })
+
   return (
-    <div className={cn('relative w-max', className)}>
+    <div ref={ref} className={cn('relative w-full', className)}>
       <TextField
         className="w-full"
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder={'Search'}
+        onChange={(e) => setSelected(e.target.value)}
+        label={'Your Residence Country'}
+        placeholder={'Select residence country...'}
         type="text"
         name='countryName'
-        value={searchQuery}
+        onClick={() => setOpenDropdown(true)}
+        value={selected}
       />
-      <Dropdown
-        className="w-max max-h-80 overflow-y-scroll border-1 shadow-lg rounded-lg scrollbar-hide"
-        closeOnClick={closeDropdown}
-        disabled={false}
-        onClose={() => {
-          setSearchQuery('')
-          setCloseDropdown(false)
-        }}
+      <div
+        className={cn(
+          'absolute z-50 w-full',
+          openDropDown
+            ? 'scale-100 opacity-100 pointer-events-auto'
+            : 'scale-95 opacity-0 pointer-events-none',
+          'transition-opacity ease-in-out duration-300',
+          className,
+        )}
+        onClick={() => setOpenDropdown(false)}
       >
-        <Panel className="max-w-xs sm:w-full max-h-52 rounded-lg overflow-hidden overflow-y-scroll">
-          <TextField
-            className="w-full"
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={'Search'}
-            type="text"
-            name='countryName'
-            value={searchQuery}
-          />
+        <Panel className="w-full max-h-52 rounded-lg overflow-hidden overflow-y-scroll">
           {options}
         </Panel>
-      </Dropdown>
+      </div>
     </div>
   )
 }
