@@ -55,6 +55,14 @@ const CountrySelector: FC<CountrySelectorProps> = ({
 
   return (
     <div className={cn('relative w-max', className)}>
+      <TextField
+        className="w-full"
+        onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder={'Search'}
+        type="text"
+        name='countryName'
+        value={searchQuery}
+      />
       <Dropdown
         className="w-max max-h-80 overflow-y-scroll border-1 shadow-lg rounded-lg scrollbar-hide"
         closeOnClick={closeDropdown}
