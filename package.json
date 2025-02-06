@@ -6,12 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npx playwright test && npx playwright show-report",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --debug",
+    "test:gen": "npx playwright codegen http://localhost:3000/registration"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.3.1",
     "next": "15.1.6",
     "next-nprogress-bar": "^2.4.4",
     "react": "^19.0.0",
@@ -23,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.50.1",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -14,11 +14,8 @@ export default function RegistrationStep() {
   const [ step, setStep ] = useState(0)
   const router = useRouter()
   const Step = steps[step]
-  console.log('Current step', step)
 
   const goBack = () => {
-    console.log('Goback step', step)
-
     startTransition(() => {
       if (step === 0) {
         router.push('/registration/step1')
@@ -29,7 +26,6 @@ export default function RegistrationStep() {
   }
 
   const onNext = () => {
-    console.log('Next step', step)
     if (step >= steps.length - 1) {
       return
     }

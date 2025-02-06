@@ -20,11 +20,11 @@ const RegistrationStep2SendCode = ({ onBack, onNext }: { onBack: () => void, onN
     <form className="w-full flex flex-col gap-8" id='otpForm' >
       <Col className='gap-4'>
         <span className='text-medium-s3 underline underline-offset-8'>OTP Verification</span>
-        <Col className='w-full h-46 gap-4 text-center bg-white py-4 px-8'>
+        <Col className='w-full h-56 justify-evenly text-center bg-white py-4 px-8'>
           <h3 className='text-medium-s5'>Send Code</h3>
           <p className='text-dark-gray-300 text-medium-b2'>How would you like to receive the code?</p>
-          <RadioGroup onChange={onChange} className='flex justify-between mt-8'>
-            <RadioGroup.Option id='phone' label='Send to Phone' name='otp_group' />
+          <RadioGroup onChange={onChange} className='flex justify-evenly mt-8'>
+            <RadioGroup.Option id='phone' label='Send to Phone' name='otp_group'/>
             <RadioGroup.Option id='email' label='Send to Email' name='otp_group' />
           </RadioGroup>
         </Col>

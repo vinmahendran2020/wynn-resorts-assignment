@@ -1,6 +1,16 @@
 
-import { breakpoints } from '../tailwind.config'
 import { useWindowSize } from './useWindowSize'
+
+const breakpoints = {
+  xs: { min: '0px', max: '639px' },
+  sm: '640px',
+  md: '768px',
+  lg: '961px',
+  xl: '1150px',
+  '2xl': '1440px',
+  '3xl': '1740px',
+  '4xl': '2200px',
+}
 
 const BREAKPOINTS = {
   SM: parseInt(breakpoints.sm),

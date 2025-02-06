@@ -11,6 +11,7 @@ import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import RegistrationStep1 from "../../../components/Registration/RegistrationStep1";
+import FullPageLoader from "@/components/FullPageLoader";
 
 export default function RegistrationStep() {
 
@@ -45,7 +46,7 @@ export default function RegistrationStep() {
   }, [isError])
 
   if (isLoading) {
-    return <Loader />
+    return <FullPageLoader />
   }
 
   return <RegistrationStep1 {...form} onSuccess={onSuccess} />

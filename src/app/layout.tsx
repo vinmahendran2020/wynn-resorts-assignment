@@ -26,7 +26,7 @@ export default function RootLayout({
           name="viewport"
         ></meta>
       </head>
-      <body>
+      <body id='root'>
         <ProgressBar
           color="#0F71F2"
           disableSameURL={false}
@@ -38,7 +38,7 @@ export default function RootLayout({
         <Suspense fallback={<> Loading </>}>
           <ReduxProvider>
             <Header />
-            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start h-full">
               <section className="w-full flex flex-col items-center justify-center">
                 {children}
               </section>
