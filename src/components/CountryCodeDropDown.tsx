@@ -1,30 +1,34 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
-import Image from 'next/image'
+import useOutsideClick from '@/hooks/useOutsideEvent'
+import { ChevronDown } from '@/icons'
+import { IFormInput } from '@/types'
 import { countriesList, Country } from '@/types/country'
-import Row from './Row'
-import Dropdown from './Dropdown'
-import cn from './utils/classnames'
+import Image from 'next/image'
+import { UseFormSetValue } from 'react-hook-form'
 import Panel from './Panel'
+import Row from './Row'
 import TextField from './TextField'
+import cn from './utils/classnames'
 
 export const DEFAULT_COUNTRY_NAME = /United States/i
 
 interface DialCodeSelectorProps {
   className?: string
-  onChange?: (data: Country) => void
+  setValue: UseFormSetValue<IFormInput>
 }
 
-const DialCodeSelector: FC<DialCodeSelectorProps> = ({ onChange, className }) => {
+const DialCodeSelector: FC<DialCodeSelectorProps> = ({ className, setValue }) => {
 
   const selectedCountry = countriesList.find((item) => DEFAULT_COUNTRY_NAME.test(item.name))
   const [selected, setSelected] = useState<Country>(selectedCountry || countriesList[0])
   const [searchQuery, setSearchQuery] = useState('')
+  const [openDropDown, setOpenDropdown] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
-  const onClick = (data: Country) => {
-    setSelected(data)
-    onChange?.(data)
-  }
+  useEffect(() => {
+    setValue('countryCode', selected.phone?.[0])
+  }, [selected])
 
   const filteredCountries = countriesList.filter((item) => {
     const query = searchQuery?.toLowerCase()
@@ -39,9 +43,9 @@ const DialCodeSelector: FC<DialCodeSelectorProps> = ({ onChange, className }) =>
     const { image, name, phone } = item
     return (
       <Row
-        className="py-2 px-3 cursor-pointer hover:bg-lightgray-80 rounded-lg gap-2 items-center"
+        className="py-2 px-3 cursor-pointer hover:bg-lightgray-80 rounded-sm gap-2 items-center"
         key={index}
-        onClick={() => onClick(item)}
+        onClick={() => setSelected(item)}
       >
         <Row className="w-full text-start items-center gap-2">
           <Image alt="falg" height={15} src={image} width={20} />
@@ -54,18 +58,31 @@ const DialCodeSelector: FC<DialCodeSelectorProps> = ({ onChange, className }) =>
     )
   })
 
+  useOutsideClick({
+    handler: () => setOpenDropdown(false),
+    ref,
+  })
+
   return (
-    <div className={cn('relative w-max', className)}>
-      <Dropdown
-        className="w-max max-h-80 overflow-y-scroll border-1 shadow-lg rounded-lg scrollbar-hide"
-        disabled={false}
-        onClose={() => setSearchQuery('')}
+    <div className={cn('relative w-max', className)} onClick={() => setOpenDropdown((prev) => !prev)} ref={ref}>
+      <Row className="w-max gap-2 items-center justify-between transition-colors rounded-sm cursor-pointer">
+        <Image alt="falg" width={25} height={25} src={selected.image}  />
+        <ChevronDown />
+        <div
+          className="text-regular-b2 text-darkgray">{selected.phone?.[0]}</div>
+      </Row>
+      <div
+        className={cn(
+          'absolute z-50 w-96',
+          openDropDown ? 'scale-100 opacity-100 pointer-events-auto' : 'hidden',
+          className,
+        )}
+        onClick={(e) => {
+          e.stopPropagation()
+          setOpenDropdown(false)
+        }}
       >
-        <Row className="w-max py-2 px-3 mt-1 h-[37px] gap-2 items-center justify-between border-1 border-lightgray-120 focus:border-blue hover:border-blue transition-colors rounded-lg cursor-pointer">
-          <Image alt="falg" height={15} src={selected.image} width={20} />
-          <div className="text-regular-b2 text-darkgray">{selected.phone?.[0]}</div>
-        </Row>
-        <Panel className="max-w-xs sm:w-full max-h-52 rounded-lg overflow-hidden overflow-y-scroll">
+        <Panel className="max-w-xs sm:w-full max-h-52 rounded-sm overflow-hidden overflow-y-scroll">
           <TextField
             className="w-full"
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -76,7 +93,7 @@ const DialCodeSelector: FC<DialCodeSelectorProps> = ({ onChange, className }) =>
           />
           {options}
         </Panel>
-      </Dropdown>
+      </div>
     </div>
   )
 }

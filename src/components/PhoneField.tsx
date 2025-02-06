@@ -1,8 +1,10 @@
 import React, { InputHTMLAttributes, forwardRef } from 'react'
-import { UseFormRegister } from 'react-hook-form'
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
 import cn from './utils/classnames'
 import DialCodeSelector from './CountryCodeDropDown'
+import Row from './Row'
+import { IFormInput } from '@/types'
 
 interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
@@ -12,13 +14,14 @@ interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: React.ReactNode
   isError?: boolean
   label?: string
-  name: string
+  name?: string
   pattern?: any
   placeholder?: string
   ref?: any
-  register?: UseFormRegister<any>
+  register: UseFormRegister<any>
   required?: boolean
   type?: string
+  setValue: UseFormSetValue<IFormInput>
 }
 
 const PhoneField = (
@@ -28,17 +31,20 @@ const PhoneField = (
     disabled,
     errorMessage,
     isError,
-    label = '',
+    label = 'Phone Number',
     title = '',
     placeholder = '',
-    name = 'text-input',
+    name = 'phoneNumber',
     register,
-    required = false,
-    pattern,
-    type = 'text',
+    required = true,
+    pattern="[0-9]",
+    type = "tel",
+    setValue,
     ...props
   }: FieldProps
 ) => {
+
+  const { onChange, ...registerHandler } = register(name, { required, minLength: 10 })
   return (
     <div>
       {title ? <div className="text-medium-b3 p-1">{title}</div> : null}
@@ -52,27 +58,33 @@ const PhoneField = (
           )}
           htmlFor={name}
         >
-          {label}
+          {label}{required && <sup className='pl-1'>*</sup>}
         </label>
       )}
-      <DialCodeSelector onChange={() => {}} />
-      <input
-        autoFocus={autoFocus}
+      <Row
         className={cn(
-          'bg-white px-4 py-3 text-regular-b2 text-darkgray placeholder-darkgray-30 placeholder:regular-b4 bg-transparent rounded-lg border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
-          isError &&
-          'border-red-80 focus:border-red-80 placeholder-red-80 hover:border-red-80 animate-shake',
+          'bg-white px-4 py-3 text-regular-b2 text-darkgray rounded-sm border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
+          isError && 'border-red-80 focus:border-red-80 placeholder-red-80 hover:border-red-80 animate-shake',
           disabled && 'hover:border-lightgray-120',
           label && 'mt-1',
           className,
-        )}
-        disabled={disabled}
-        name={name}
-        placeholder={placeholder}
-        type={type}
-        {...register?.(name, { required, pattern })}
-        {...props}
-      />
+        )}>
+        <DialCodeSelector setValue={setValue}/>
+        <input
+          className={'ml-4 placeholder-darkgray-30 placeholder:regular-b4 bg-transparent appearance-none focus:outline-none'}
+          disabled={disabled}
+          placeholder={placeholder}
+          type={type}
+          inputMode="numeric"
+          onChange={(event) => {
+            const numericValue = event.target.value.replace(/\D/g, '');
+            event.target.value = numericValue;
+            onChange({ target: { value: numericValue } });
+          }}
+          {...registerHandler}
+          {...props}
+        />
+      </Row>
       {isError && errorMessage && (
         <div
           className={'text-red text-regular-b4 mt-1'}

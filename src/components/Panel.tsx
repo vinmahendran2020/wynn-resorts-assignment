@@ -14,7 +14,7 @@ const Panel: FC<PanelProps> = ({ children, className = '', variant = 'light', ..
   const bgColor = variant === 'light' ? 'bg-white' : 'bg-darkgray'
 
   return (
-    <div className={cn('p-2 xl:p-3 2xl:p-4 shadow-2xl rounded-lg', bgColor, className)} {...props}>
+    <div className={cn('p-2 xl:p-3 2xl:p-4 shadow-2xl rounded-sm', bgColor, className)} {...props}>
       {children}
     </div>
   )

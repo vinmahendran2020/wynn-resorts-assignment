@@ -8,7 +8,6 @@ interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   containerClass?: string
   'data-testid'?: string
   disabled?: boolean
-  errorMessage?: React.ReactNode
   isError?: boolean
   label?: string
   name: string
@@ -25,7 +24,6 @@ const TextField = (
     autoFocus,
     className = '',
     disabled,
-    errorMessage,
     isError,
     label = '',
     title = '',
@@ -51,13 +49,13 @@ const TextField = (
           )}
           htmlFor={name}
         >
-          {label}
+          {label}{required && <sup className='pl-1'>*</sup>}
         </label>
       )}
       <input
         autoFocus={autoFocus}
         className={cn(
-          'bg-white px-4 py-3 text-regular-b2 text-darkgray placeholder-darkgray-30 placeholder:regular-b4 bg-transparent rounded-lg border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
+          'bg-white px-4 py-3 text-regular-b2 text-darkgray placeholder-darkgray-30 placeholder:regular-b4 bg-transparent rounded-sm border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
           isError &&
           'border-red-80 focus:border-red-80 placeholder-red-80 hover:border-red-80 animate-shake',
           disabled && 'hover:border-lightgray-120',
@@ -71,14 +69,6 @@ const TextField = (
         {...register?.(name, { required, pattern })}
         {...props}
       />
-      {isError && errorMessage && (
-        <div
-          className={'text-red text-regular-b4 mt-1'}
-          data-testid={`${props['data-testid']}-error`}
-        >
-          {isError && errorMessage}
-        </div>
-      )}
     </div>
   )
 }

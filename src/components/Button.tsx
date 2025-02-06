@@ -12,7 +12,7 @@ const Button = ({
   children,
   className = '',
   hidden = false,
-  rounded = 'rounded-md',
+  rounded = 'rounded-sm',
   variant = 'primary',
   ...props
 }: ButtonProps) => {
@@ -25,20 +25,18 @@ const Button = ({
         rounded,
         'text-medium-b2',
         variant === 'primary' &&
-          'bg-blue hover:bg-blue-120 text-white disabled:bg-darkgray-30-new disabled:text-darkgray-200 border-1 border-blue disabled:border-none',
+        'bg-green-180 hover:bg-green-120 text-white disabled:bg-darkgray-30-new disabled:text-darkgray-200 border-1 border-blue disabled:border-none',
         variant === 'danger' &&
-          'bg-white hover:bg-white border-[1.6px] border-red-500 text-red-500 hover:text-red-500 hover:border-red-500 disabled:border-lightgray-120 disabled:text-darkgray-40',
+        'bg-white hover:bg-white border-[1.6px] border-red-500 text-red-500 hover:text-red-500 hover:border-red-500 disabled:border-lightgray-120 disabled:text-darkgray-40',
         variant === 'secondary' &&
-          'bg-white hover:bg-white text-blue border-1 border-blue hover:text-blue-120 hover:border-blue-120 disabled:border-lightgray-120 disabled:text-darkgray-40',
+        'bg-white hover:bg-white text-blue border-1 border-blue hover:text-blue-120 hover:border-blue-120 disabled:border-lightgray-120 disabled:text-darkgray-40',
         variant === 'transparent' &&
-          'bg-transparent text-blue border-1 border-blue hover:text-blue-120 hover:border-blue-120 disabled:border-lightgray-120 disabled:text-darkgray-40',
+        'bg-transparent text-blue border-1 border-blue hover:text-blue-120 hover:border-blue-120 disabled:border-lightgray-120 disabled:text-darkgray-40',
         variant === 'link' && 'text-blue hover:text-blue-120 disabled:text-darkgray-40',
         variant === 'plain' && 'text-black hover:text-blue-120 disabled:text-darkgray-40',
         variant === 'outline' &&
-          'bg-white hover:bg-white border-[1.6px] border-darkgray-50 hover:text-darkgray-60 hover:border-darkgray-60 disabled:border-lightgray-120 disabled:text-darkgray-40',
-        variant === 'premium' &&
-          'bg-yellow hover:bg-yellow-120 border-1 border-yellow text-darkgray disabled:bg-lightgray-120 disabled:text-darkgray',
-      )}
+        'bg-white hover:bg-white border-[1.6px] border-darkgray-50 hover:text-darkgray-60 hover:border-darkgray-60 disabled:border-lightgray-120 disabled:text-darkgray-40',
+              )}
       type="button"
       {...props}
     >

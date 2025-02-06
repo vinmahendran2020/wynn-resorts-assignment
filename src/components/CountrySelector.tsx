@@ -7,14 +7,19 @@ import Row from './Row'
 import TextField from './TextField'
 import cn from './utils/classnames'
 import useOutsideClick from '@/hooks/useOutsideEvent'
+import { ChevronDown } from '@/icons'
+import { UseFormRegister } from 'react-hook-form'
 
 interface CountrySelectorProps {
   className?: string
-  onChange?: (data: Country) => void
+  register?: UseFormRegister<any>
+  isError?: boolean
 }
 
 const CountrySelector: FC<CountrySelectorProps> = ({
   className,
+  register,
+  isError
 }) => {
   const [selected, setSelected] = useState<string>()
   const [openDropDown, setOpenDropdown] = useState(false)
@@ -34,7 +39,7 @@ const CountrySelector: FC<CountrySelectorProps> = ({
     const { image, name } = item
     return (
       <Row
-        className="py-2 px-3 cursor-pointer hover:bg-lightgray-80 rounded-lg gap-2 items-center"
+        className="py-2 px-3 cursor-pointer hover:bg-lightgray-80 rounded-sm gap-2 items-center"
         key={index}
         onClick={() => setSelected(item.name)}
       >
@@ -61,10 +66,14 @@ const CountrySelector: FC<CountrySelectorProps> = ({
         label={'Your Residence Country'}
         placeholder={'Select residence country...'}
         type="text"
-        name='countryName'
+        name="countryName"
+        isError={isError}
+        register={register}
+        required={true}
         onClick={() => setOpenDropdown(true)}
         value={selected}
       />
+      <ChevronDown className="absolute right-2 bottom-1/4 translate-y-1/4" />
       <div
         className={cn(
           'absolute z-50 w-full',
@@ -76,7 +85,7 @@ const CountrySelector: FC<CountrySelectorProps> = ({
         )}
         onClick={() => setOpenDropdown(false)}
       >
-        <Panel className="w-full max-h-52 rounded-lg overflow-hidden overflow-y-scroll">
+        <Panel className="w-full max-h-52 rounded-sm overflow-hidden overflow-y-scroll">
           {options}
         </Panel>
       </div>

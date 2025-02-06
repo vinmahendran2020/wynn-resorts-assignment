@@ -3,6 +3,8 @@
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { Suspense } from "react";
 import '@/../globals.css'
+import Header from '@/components/Header';
+import ReduxProvider from '@/store/ReduxProvider';
 
 export default function RootLayout({
   children,
@@ -34,7 +36,16 @@ export default function RootLayout({
           startPosition={0.3}
         />
         <Suspense fallback={<> Loading </>}>
-          {children}
+          <ReduxProvider>
+            <Header />
+            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+              <section className="w-full flex flex-col items-center justify-center">
+                {children}
+              </section>
+            </main>
+            <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+            </footer>
+          </ReduxProvider>
         </Suspense>
       </body>
     </html>

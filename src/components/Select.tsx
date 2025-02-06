@@ -65,7 +65,7 @@ const Select = ({
           <div className={`relative ${label && 'mt-2'}`}>
             <select
               className={cn(
-                'px-4 py-3 pr-8 text-regular-b2 bg-transparent rounded-lg border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
+                'px-4 py-3 pr-8 text-regular-b2 bg-transparent rounded-sm border-1 border-lightgray-120 appearance-none focus:outline-none focus:border-blue hover:border-blue peer transition-colors',
                 isPlaceholder ? 'text-darkgray-30' : 'text-darkgray',
                 isError &&
                 'text-red-80 border-red-80 focus:border-red-80 placeholder-red-80 hover:border-red-80 animate-shake',

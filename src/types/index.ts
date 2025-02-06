@@ -17,5 +17,11 @@ export enum GenderEnum {
 
 export interface IFormInput {
   firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  countryName: string
   gender: GenderEnum
+  consent: boolean
+  countryCode: string
 }

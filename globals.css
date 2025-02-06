@@ -7,6 +7,10 @@
   h1 {
     @apply text-medium-h5 text-title;
   }
+
+  a {
+    @apply text-blue-80 underline;
+  }
 }
 
 :root {
