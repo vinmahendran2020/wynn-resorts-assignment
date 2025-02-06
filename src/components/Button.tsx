@@ -35,7 +35,7 @@ const Button = ({
         variant === 'link' && 'text-blue hover:text-blue-120 disabled:text-darkgray-40',
         variant === 'plain' && 'text-black hover:text-blue-120 disabled:text-darkgray-40',
         variant === 'outline' &&
-        'bg-white hover:bg-white border-[1.6px] border-darkgray-50 hover:text-darkgray-60 hover:border-darkgray-60 disabled:border-lightgray-120 disabled:text-darkgray-40',
+        'bg-white hover:bg-green-40 border-[1.6px] border-green-180 hover:text-green-160 hover:border-darkgray-60 text-green-180',
               )}
       type="button"
       {...props}

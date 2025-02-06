@@ -5,6 +5,7 @@ import { useBreakpoints } from '@/hooks/useBreakpoints'
 import Row from './Row'
 import cn from './utils/classnames'
 import { Error, Success } from '@/icons'
+import { ToastType } from '@/types'
 
 interface ToastProps {
   children: ReactNode
@@ -12,7 +13,7 @@ interface ToastProps {
   onClose?: () => void
   onShow?: () => void
   show?: boolean
-  type?: 'error' | 'info' | 'success' | 'warning'
+  type?: ToastType
 }
 
 const Toast: React.FC<ToastProps> = ({

@@ -24,4 +24,12 @@ export interface IFormInput {
   gender: GenderEnum
   consent: boolean
   countryCode: string
+  otpMethod?: string
+}
+
+export enum ToastType {
+  error = 'error',
+  info = 'info',
+  success = 'success',
+  warning = 'warning'
 }

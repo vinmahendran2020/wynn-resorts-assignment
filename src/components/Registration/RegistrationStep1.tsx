@@ -9,35 +9,29 @@ import Select from '@/components/Select'
 import TextField from '@/components/TextField'
 import { IFormInput } from '@/types'
 
-import { SubmitErrorHandler, SubmitHandler } from 'react-hook-form'
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
-type Props = {
-  register: any;
-  handleSubmit: (onValid: SubmitHandler<IFormInput>, onInvalid?: SubmitErrorHandler<IFormInput>) => (e?: React.BaseSyntheticEvent) => Promise<void>;
-  formState: {
-    errors: any;
-  };
-  setValue: any;
+interface FormState {
+  errors: FieldErrors<IFormInput>;
+}
+
+interface Props {
+  onSuccess: (data: IFormInput) => void;
+  register: UseFormRegister<IFormInput>;
+  handleSubmit: UseFormHandleSubmit<IFormInput>;
+  formState: FormState;
+  setValue: UseFormSetValue<IFormInput>;
 }
 
 const RegistrationStep1 = ({
   register,
   handleSubmit,
   formState: { errors },
-  setValue
+  setValue,
+  onSuccess
 }: Props) => {
-
-  const onSuccess = (data: IFormInput) => {
-    console.log('bye', data)
-  }
-
-  const onInvalid = (data: any) => {
-    console.log('hi', errors)
-    const keys = Object.keys(data)
-  }
-
   return (
-    <form className="w-full flex flex-col gap-8" onSubmit={handleSubmit(onSuccess, onInvalid)}>
+    <form className="w-full flex flex-col gap-8" onSubmit={handleSubmit(onSuccess)}>
       <Col className='gap-4'>
         <span className='text-medium-s3 underline underline-offset-8'>Personal Info</span>
         <Col className='gap-4'>

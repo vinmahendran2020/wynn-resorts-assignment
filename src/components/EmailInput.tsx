@@ -14,30 +14,12 @@ const EmailInput: React.FC<EmailInputProps> = ({
   isError
 }) => {
   const [emailError, setEmailError] = useState<string | undefined>(isError ? 'email error' : undefined)
-  const [email, setEmail] = useState<string>('')
 
   useEffect(() => {
     if (isError) {
       setEmailError('email error')
     }
   }, [isError])
-  
-  const onChangeEmail = (value: string) => {
-    setEmail(value)
-    setEmailError('')
-    const success = validateEmail(value)
-
-    if (value.length === 0) {
-      setEmailError('')
-      return
-    }
-
-    if (success) {
-      setEmailError?.('')
-    } else {
-      setEmailError?.('email error')
-    }
-  }
 
   return (
     <TextField
@@ -47,13 +29,11 @@ const EmailInput: React.FC<EmailInputProps> = ({
       register={register}
       label={'Email'}
       name='email'
-      onChange={(e) => onChangeEmail(e.target.value)}
       placeholder={'Enter email address...'}
       tabIndex={1}
       type="email"
       required={required}
       pattern={/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/}
-      value={email}
     />
   )
 }

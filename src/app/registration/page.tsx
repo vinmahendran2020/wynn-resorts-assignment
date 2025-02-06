@@ -1,22 +1,15 @@
 'use client'
 
-import Col from "@/components/Col";
-import RegistrationStep1 from "./RegistrationStep1";
-import RegistrationStep2 from "./RegistrationStep2";
-import { useForm } from "react-hook-form";
-import { IFormInput } from "@/types";
+import { useRouter } from "next-nprogress-bar";
+import { useEffect } from "react";
 
-export default function Registration() {
+export default function RegistrationStep({ type }: { type: string }) {
 
-  const form = useForm<IFormInput>({})
+  const router = useRouter()
 
-  console.log('form', form.getValues())
+  useEffect(() => {
+    router.push('/registration/step1')
+  }, [])
 
-  return (
-    <Col className='sm:w-150 xs:p-4 gap-6 mt-4 sm:mt-6'>
-      <h1>Registration</h1>
-      <p className="text-medium-b2">Please enter below information to create your account</p>
-      <RegistrationStep1 {...form}/>
-    </Col>
-  )
+  return <></>
 }
