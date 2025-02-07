@@ -4,15 +4,16 @@ import RadioGroup from '@/components/RadioGroup'
 import Row from '@/components/Row'
 import { useAppDispatch } from '@/hooks/storeHooks'
 import { setOtpMethod } from '@/store/slices/formSlice'
-import { IFormInput } from '@/types'
-import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 
 const RegistrationStep2SendCode = ({ onBack, onNext }: { onBack: () => void, onNext: () => void }) => {
 
   const dispatch = useAppDispatch()
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const onChange = (e: React.FormEvent<HTMLFieldSetElement>) => {
     const target = e.target as HTMLInputElement;
+    setSelectedOption(target.id);
     dispatch(setOtpMethod(target.id))
   }
 
@@ -34,8 +35,8 @@ const RegistrationStep2SendCode = ({ onBack, onNext }: { onBack: () => void, onN
         <Button className='basis-1/2' variant='outline' onClick={onBack}>
           Back
         </Button>
-        <Button className='basis-1/2' onClick={onNext}>
-          <input type="submit" value="Next" />
+        <Button className='basis-1/2' type="submit" onClick={onNext} disabled={!selectedOption}>
+          Next
         </Button>
       </Row>
     </form>

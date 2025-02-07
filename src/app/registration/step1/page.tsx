@@ -1,6 +1,6 @@
 'use client'
 
-import Loader from "@/components/Loader";
+import FullPageLoader from "@/components/FullPageLoader";
 import { useAppDispatch } from "@/hooks/storeHooks";
 import { usePostUserRegistrationMutation } from "@/services/registrationApi";
 import storage from "@/storage";
@@ -11,7 +11,6 @@ import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import RegistrationStep1 from "../../../components/Registration/RegistrationStep1";
-import FullPageLoader from "@/components/FullPageLoader";
 
 export default function RegistrationStep() {
 

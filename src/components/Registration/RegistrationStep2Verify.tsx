@@ -22,7 +22,7 @@ const RegistrationStep2Verify = ({ onBack }: { onBack: () => void }) => {
         <span className='text-medium-s3 underline underline-offset-8'>OTP Verification</span>
         <Col className='w-full h-56 gap-4 justify-evenly text-center bg-white py-4 px-8'>
           <h3 className='text-medium-s5'>Please check your {formState.otpMethod === 'email' ? 'email' : 'phone'}</h3>
-          <p className='text-dark-gray-300 text-medium-b1 sm:text-medium-b2'>We've sent a code to {codeSent}</p>
+          <p className='text-dark-gray-300 text-medium-b2'>We've sent a code to {codeSent}</p>
           <OTPInput {...form}/>
         </Col>
       </Col>
@@ -31,8 +31,8 @@ const RegistrationStep2Verify = ({ onBack }: { onBack: () => void }) => {
         <Button className='basis-1/2' variant='outline' onClick={onBack}>
           Back
         </Button>
-        <Button className='basis-1/2'>
-          <input type="submit" value="Next" />
+        <Button type='submit' className='basis-1/2'>
+          Next
         </Button>
       </Row>
     </form>

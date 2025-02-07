@@ -5,6 +5,8 @@ import { Suspense } from "react";
 import '@/../globals.css'
 import Header from '@/components/Header';
 import ReduxProvider from '@/store/ReduxProvider';
+import Newsletter from '@/components/NewsLetter';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
@@ -37,14 +39,16 @@ export default function RootLayout({
         />
         <Suspense fallback={<> Loading </>}>
           <ReduxProvider>
-            <Header />
-            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start h-full">
+            <main className="flex flex-col gap-8 items-center sm:items-start h-full">
+              <Header />
               <section className="w-full flex flex-col items-center justify-center">
                 {children}
               </section>
+              <footer className="w-full">
+                <Newsletter />
+                <Footer className='bg-[#5A3826] text-white py-8 px-6 md:px-12 lg:px-20'/>
+              </footer>
             </main>
-            <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-            </footer>
           </ReduxProvider>
         </Suspense>
       </body>

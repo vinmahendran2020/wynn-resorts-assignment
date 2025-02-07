@@ -25,7 +25,7 @@ const Button = ({
         rounded,
         'text-medium-b2',
         variant === 'primary' &&
-        'bg-green-180 hover:bg-green-120 text-white disabled:bg-darkgray-30-new disabled:text-darkgray-200 border-1 border-blue disabled:border-none',
+        'bg-green-180 hover:bg-green-120 text-white disabled:bg-darkgray-30-new disabled:text-darkgray-200 border-1 border-darkgray-100',
         variant === 'danger' &&
         'bg-white hover:bg-white border-[1.6px] border-red-500 text-red-500 hover:text-red-500 hover:border-red-500 disabled:border-lightgray-120 disabled:text-darkgray-40',
         variant === 'secondary' &&

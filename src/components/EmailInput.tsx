@@ -6,28 +6,34 @@ interface EmailInputProps {
   register?: UseFormRegister<any>
   required?: boolean
   isError?: boolean
+  label?: string
+  className?: string
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({
   register,
   required = true,
-  isError
+  isError,
+  label = 'Email',
+  className = 'w-full'
 }) => {
   const [emailError, setEmailError] = useState<string | undefined>(isError ? 'email error' : undefined)
 
   useEffect(() => {
     if (isError) {
       setEmailError('email error')
+    } else {
+      setEmailError(undefined)
     }
   }, [isError])
 
   return (
     <TextField
-      className="w-full"
+      className={className}
       containerClass="w-full"
       isError={!!emailError}
       register={register}
-      label={'Email'}
+      label={label}
       name='email'
       placeholder={'Enter email address...'}
       tabIndex={1}

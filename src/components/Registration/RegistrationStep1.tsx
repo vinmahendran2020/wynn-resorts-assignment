@@ -105,8 +105,8 @@ const RegistrationStep1 = ({
         register={register}
         label={<div>I agree to the <a href='javascript::void'>terms and conditions</a> and <a href='javascript::void'>privacy policy</a>.</div>}
       />
-      <Button className='sm:w-1/3'>
-        <input type="submit" value="Submit" />
+      <Button className='sm:w-1/3' type="submit">
+        Next
       </Button>
     </form>
   )
