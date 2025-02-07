@@ -25,4 +25,15 @@ POST: https://demo5231182.mockable.io/wynnresorts/register
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Already deployed at: https://wynn-resorts-assignment.vercel.app/registration/step1 
+
+```
+1. Connect to your Git Provider
+2. Import the repository
+3. Define Build and Output commands
+3. Define following environment variables
+  a. NEXT_PUBLIC_ENV: dev | qa | uat | production
+  a. NEXT_PUBLIC_API_BASE_URL: Backend API base URL
+4. Deploy the project
+5. Configure the Domain
+```
