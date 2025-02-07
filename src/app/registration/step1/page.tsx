@@ -41,7 +41,9 @@ export default function RegistrationStep() {
   }, [isSuccess])
 
   useEffect(() => {
-    isError && dispatch(setToast({ show: true, props: { type: ToastType.error, message: 'Registration failed' } }))
+    if(isError) {
+      dispatch(setToast({ show: true, props: { type: ToastType.error, message: 'Registration failed' } }))
+    }
   }, [isError])
 
   if (isLoading) {

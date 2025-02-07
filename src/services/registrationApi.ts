@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const registrationApi = createApi({
   reducerPath: 'registrationApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://demo5231182.mockable.io' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
   endpoints: (builder) => ({
     postUserRegistration: builder.mutation({
       query: (user) => ({

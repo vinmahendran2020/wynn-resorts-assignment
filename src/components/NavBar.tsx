@@ -1,16 +1,14 @@
 "use client";
 
 import { useBreakpoints } from "@/hooks/useBreakpoints";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Hamburger } from "@/icons";
-import cn from "./utils/classnames";
 import useOutsideClick from "@/hooks/useOutsideEvent";
+import { Hamburger } from "@/icons";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRef, useState } from "react";
+import cn from "./utils/classnames";
 
 const NavBar = ({ className }: { className?: string }) => {
-  const pathname = usePathname();
   const { isAtLeastMedium } = useBreakpoints()
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null)
