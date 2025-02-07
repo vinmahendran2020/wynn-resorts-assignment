@@ -6,11 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --dir .",
+    "lint:fix": "next lint --dir . --fix",
+    "lint:error": "next lint --dir . --quiet",
     "test": "npx playwright test && npx playwright show-report",
     "test:ui": "npx playwright test --ui",
-    "test:debug": "npx playwright test --debug",
-    "test:gen": "npx playwright codegen http://localhost:3000/registration"
+    "test:debug": "npx playwright test --debug"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from "react";
+import { ChangeEvent, FC, KeyboardEvent, useRef } from "react";
 import { Controller, UseFormRegister } from "react-hook-form";
 import Row from "./Row";
 
@@ -16,12 +16,10 @@ interface OTPInputProps {
   };
 }
 
-const OTPInput: React.FC<OTPInputProps> = ({ control, formState: { errors } }) => {
+const OTPInput: FC<OTPInputProps> = ({ control, formState: { errors } }) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  console.log('errors', errors)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const value = e.target.value;
     if (/^\d?$/.test(value)) {
       if (value && index < inputRefs.current.length - 1) {
@@ -30,7 +28,7 @@ const OTPInput: React.FC<OTPInputProps> = ({ control, formState: { errors } }) =
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
     if (e.key === "Backspace" && !e.currentTarget.value && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }

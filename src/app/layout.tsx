@@ -1,7 +1,7 @@
 'use client'
 
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import '@/../globals.css'
 import Header from '@/components/Header';
 import ReduxProvider from '@/store/ReduxProvider';
@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">

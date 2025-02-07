@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, forwardRef } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 
 import cn from './utils/classnames'

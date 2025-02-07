@@ -4,7 +4,7 @@ import Loader from "@/components/Loader"
 import RegistrationStep2SendCode from "@/components/Registration/RegistrationStep2SendCode"
 import RegistrationStep2Verify from "@/components/Registration/RegistrationStep2Verify"
 import { useRouter } from "next-nprogress-bar"
-import { useEffect, useState, useTransition } from "react"
+import { useState, useTransition } from "react"
 
 
 export default function RegistrationStep() {

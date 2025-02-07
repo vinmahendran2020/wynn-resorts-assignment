@@ -3,7 +3,7 @@
 import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 
-export default function RegistrationStep({ type }: { type: string }) {
+export default function RegistrationStep() {
 
   const router = useRouter()
 

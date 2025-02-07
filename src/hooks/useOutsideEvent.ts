@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { RefObject, useEffect } from 'react'
 
 interface UseOutsideClickProps {
   event?: string;
   handler: () => void;
-  ref: React.RefObject<HTMLDivElement | null>;
+  ref: RefObject<HTMLDivElement | null>;
 }
 
 const useOutsideClick = ({ handler, ref }: UseOutsideClickProps) => {

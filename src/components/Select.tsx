@@ -1,7 +1,7 @@
-import React, { SelectHTMLAttributes, forwardRef, useEffect, useState } from 'react'
+import React, { SelectHTMLAttributes, useEffect, useState } from 'react'
 
-import cn from './utils/classnames'
 import { ChevronDown } from '@/icons'
+import cn from './utils/classnames'
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   children: any[]

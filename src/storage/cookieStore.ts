@@ -7,16 +7,16 @@ const isFalsyValue = (value: string) => {
 const cookieStore = {
   clear() {
     if (typeof window === 'undefined') return
-    let cookies = document.cookie.split(';')
+    const cookies = document.cookie.split(';')
     for (let i = 0; i < cookies.length; i++) {
       this.remove(cookies[i].split('=')[0].trim())
     }
   },
   get(key: string) {
     if (typeof window === 'undefined') return
-    let cookieArr = document.cookie.split(';')
+    const cookieArr = document.cookie.split(';')
     for (let i = 0; i < cookieArr.length; i++) {
-      let cookiePair = cookieArr[i].split('=')
+      const cookiePair = cookieArr[i].split('=')
       const value = decodeURIComponent(cookiePair[1])
       if (key == cookiePair[0].trim() && !isFalsyValue(value)) {
         return value
@@ -26,10 +26,10 @@ const cookieStore = {
   },
   getCookies() {
     if (typeof window === 'undefined') return
-    let pairs = document.cookie.split(';')
-    let cookies: { [key: string]: string } = {}
+    const pairs = document.cookie.split(';')
+    const cookies: { [key: string]: string } = {}
     for (let i = 0; i < pairs.length; i++) {
-      let pair = pairs[i].split('=')
+      const pair = pairs[i].split('=')
       cookies[(pair[0] + '').trim()] = unescape(pair.slice(1).join('='))
     }
     return cookies

@@ -1,8 +1,9 @@
 'use client'
 
 import Col from "@/components/Col";
+import { ReactNode } from "react";
 
-export default function RegistrationLayout({ children }: { children: React.ReactNode }) {
+export default function RegistrationLayout({ children }: { children: ReactNode }) {
 
   return (
     <Col className='sm:w-1/2 lg:w-1/3 2xl:w-1/4 xs:p-4 gap-6'>

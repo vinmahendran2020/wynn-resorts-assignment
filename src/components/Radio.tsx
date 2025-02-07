@@ -1,7 +1,6 @@
 import React, { ChangeEvent, ReactNode } from 'react'
 import cn from './utils/classnames'
 
-
 interface RadioProps {
   checked?: boolean
   disabled?: boolean
@@ -19,7 +18,6 @@ const Radio: React.FC<RadioProps> = ({
   label,
   name,
   onChange,
-  variant = 'small',
 }) => {
   const onCheck = (e: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return
@@ -39,7 +37,7 @@ const Radio: React.FC<RadioProps> = ({
       />
       <label
         className={cn(
-          'ml-2 text-regular-b3 sm:text-medium-b2 break-words whitespace-break-spaces',
+          'ml-2 text-regular-b1 sm:text-medium-b2 break-words whitespace-break-spaces',
           disabled
             ? 'cursor-not-allowed text-darkgray-40'
             : 'cursor-pointer text-black peer-hover:text-blue hover:text-blue',

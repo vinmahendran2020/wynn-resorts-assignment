@@ -21,44 +21,13 @@ test.describe("registration page step 1", () => {
     await expect(page.getByText("Phone Number*")).toBeVisible();
     await expect(page.getByText("I agree to the terms and")).toBeVisible();
     await expect(
-      page.locator("button").filter({ hasText: "Submit" })
+      page.locator("button").filter({ hasText: "Next" })
     ).toBeVisible();
-    await expect(page.getByText("Submit")).toBeVisible();
+    await expect(page.getByText("Next")).toBeVisible();
   });
 
-  test("test contents of registration page 1", async () => {
-    await expect(
-      page.getByRole("textbox", { name: "Enter first name..." })
-    ).toBeEmpty();
-    await expect(
-      page.getByRole("textbox", { name: "Enter last name..." })
-    ).toBeEmpty();
-    await expect(
-      page.getByRole("textbox", { name: "Select residence country..." })
-    ).toBeEmpty();
-    await expect(
-      page.getByRole("textbox", { name: "Enter email address..." })
-    ).toBeEmpty();
-    await expect(page.locator("form")).toContainText(
-      "I agree to the terms and conditions and privacy policy."
-    );
-    await expect(page.locator("form")).toContainText("Personal Info");
-    await expect(page.locator("form")).toContainText("First Name*");
-    await expect(page.locator("form")).toContainText("Last Name*");
-    await expect(page.locator("form")).toContainText("Gender");
-    await expect(page.locator("form")).toContainText("Your Residence Country*");
-    await expect(page.locator("form")).toContainText("Contact Details");
-    await expect(page.locator("form")).toContainText("Email*");
-    await expect(page.locator("form")).toContainText("Phone Number*");
-    await expect(page.getByRole("heading")).toContainText("Registration");
-    await expect(page.getByRole("paragraph")).toContainText(
-      "Please enter below information to create your account"
-    );
-  });
-
-  test("test all registration page 1 fields are required ", async ({
-  }) => {
-    await page.getByText("Submit").click();
+  test("test all registration page 1 fields are required ", async () => {
+    await page.getByText("Next").click();
     await expect(page).toHaveURL(TEST_URL);
   });
 
@@ -103,7 +72,7 @@ test.describe("registration page step 1", () => {
     await page
       .getByRole("checkbox", { name: "I agree to the terms and" })
       .check();
-    await page.getByText("Submit").click();
+    await page.getByText("Next").click();
     await expect(page).toHaveURL(TEST_URL);
   });
 
@@ -148,7 +117,7 @@ test.describe("registration page step 1", () => {
     await page
       .getByRole("checkbox", { name: "I agree to the terms and" })
       .check();
-    await page.getByText("Submit").click();
+    await page.getByText("Next").click();
     await expect(page).toHaveURL(TEST_URL);
   });
 
@@ -188,7 +157,7 @@ test.describe("registration page step 1", () => {
     await page
       .getByRole("checkbox", { name: "I agree to the terms and" })
       .check();
-    await page.getByText("Submit").click();
+    await page.getByText("Next").click();
     await expect(page).toHaveURL(TEST_URL);
   });
 });

@@ -1,13 +1,5 @@
-import React, { FC, HTMLAttributes } from 'react'
-import cn from './utils/classnames'
-import { createPortal } from 'react-dom'
-import Loader from './Loader'
-
-interface LoaderProps extends HTMLAttributes<HTMLDivElement> {
-  className?: string
-  size?: number
-  variant?: 'fill-blue' | 'fill-red'
-}
+import { createPortal } from 'react-dom';
+import Loader from './Loader';
 
 const FullPageLoader = () => {
   const rootElement = document.getElementById('root');

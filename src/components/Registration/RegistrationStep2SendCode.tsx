@@ -4,14 +4,14 @@ import RadioGroup from '@/components/RadioGroup'
 import Row from '@/components/Row'
 import { useAppDispatch } from '@/hooks/storeHooks'
 import { setOtpMethod } from '@/store/slices/formSlice'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 const RegistrationStep2SendCode = ({ onBack, onNext }: { onBack: () => void, onNext: () => void }) => {
 
   const dispatch = useAppDispatch()
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-  const onChange = (e: React.FormEvent<HTMLFieldSetElement>) => {
+  const onChange = (e: FormEvent<HTMLFieldSetElement>) => {
     const target = e.target as HTMLInputElement;
     setSelectedOption(target.id);
     dispatch(setOtpMethod(target.id))

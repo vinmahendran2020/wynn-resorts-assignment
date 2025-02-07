@@ -1,6 +1,6 @@
-import React, { RefObject, useEffect, useState } from 'react'
-import TextField from './TextField'
+import React, { useEffect, useState } from 'react'
 import { UseFormRegister } from 'react-hook-form'
+import TextField from './TextField'
 
 interface EmailInputProps {
   register?: UseFormRegister<any>
@@ -8,6 +8,7 @@ interface EmailInputProps {
   isError?: boolean
   label?: string
   className?: string
+  placeholder?: string
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({
@@ -15,7 +16,8 @@ const EmailInput: React.FC<EmailInputProps> = ({
   required = true,
   isError,
   label = 'Email',
-  className = 'w-full'
+  className = 'w-full',
+  placeholder = 'Enter email address...'
 }) => {
   const [emailError, setEmailError] = useState<string | undefined>(isError ? 'email error' : undefined)
 
@@ -35,7 +37,7 @@ const EmailInput: React.FC<EmailInputProps> = ({
       register={register}
       label={label}
       name='email'
-      placeholder={'Enter email address...'}
+      placeholder={placeholder}
       tabIndex={1}
       type="email"
       required={required}

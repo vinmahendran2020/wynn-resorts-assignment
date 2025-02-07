@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
-import EmailInput from "./EmailInput";
-import Row from "./Row";
 import Col from "./Col";
+import EmailInput from "./EmailInput";
 
 const Newsletter = () => {
   const { register, handleSubmit, formState : { errors } } = useForm();
@@ -22,6 +21,7 @@ const Newsletter = () => {
             required={false}
             isError={!!errors.email}
             label=''
+            placeholder="Enter your email address"
           />
           <Button type="submit" variant="outline" className="text-medium-b3">
             JOIN THE NEWSLETTER

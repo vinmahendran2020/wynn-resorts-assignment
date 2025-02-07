@@ -1,10 +1,10 @@
-import React, { InputHTMLAttributes, forwardRef } from 'react'
+import React, { InputHTMLAttributes } from 'react'
 import { UseFormRegister, UseFormSetValue } from 'react-hook-form'
 
-import cn from './utils/classnames'
+import { IFormInput } from '@/types'
 import DialCodeSelector from './CountryCodeDropDown'
 import Row from './Row'
-import { IFormInput } from '@/types'
+import cn from './utils/classnames'
 
 interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string
@@ -26,7 +26,6 @@ interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const PhoneField = (
   {
-    autoFocus,
     className = '',
     disabled,
     errorMessage,
@@ -37,7 +36,6 @@ const PhoneField = (
     name = 'phoneNumber',
     register,
     required = true,
-    pattern="[0-9]",
     type = "tel",
     setValue,
     ...props

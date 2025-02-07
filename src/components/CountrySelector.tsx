@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import { FC, useRef, useState } from 'react'
 
-import { countriesList, Country } from '@/types/country'
+import useOutsideClick from '@/hooks/useOutsideEvent'
+import { ChevronDown } from '@/icons'
+import { countriesList } from '@/types/country'
+import { UseFormRegister } from 'react-hook-form'
 import Panel from './Panel'
 import Row from './Row'
 import TextField from './TextField'
 import cn from './utils/classnames'
-import useOutsideClick from '@/hooks/useOutsideEvent'
-import { ChevronDown } from '@/icons'
-import { UseFormRegister } from 'react-hook-form'
 
 interface CountrySelectorProps {
   className?: string

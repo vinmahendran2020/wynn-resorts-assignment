@@ -3,9 +3,7 @@
 import Button from '@/components/Button'
 import Col from '@/components/Col'
 
-const GlobalError = ({ error }: { error: { digest?: string } & Error; reset: () => void }) => {
-  const href = typeof window !== 'undefined' ? window.location.href : ''
-
+const GlobalError = () => {
   return (
     <html>
       <body className="h-screen">

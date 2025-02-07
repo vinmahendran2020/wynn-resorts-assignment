@@ -38,7 +38,7 @@ test.describe("registration page step 3", () => {
     await page
       .getByRole("checkbox", { name: "I agree to the terms and" })
       .check();
-    await page.getByText("Submit").click();
+    await page.getByText("Next").click();
     await page
       .getByRole("textbox", { name: "Select residence country..." })
       .click();
@@ -47,7 +47,7 @@ test.describe("registration page step 3", () => {
       .filter({ hasText: /^United States$/ })
       .nth(4)
       .click();
-    await page.getByText("Submit").click();
+    await page.getByText("Next").click();
     await page.waitForURL(new RegExp(`^${TEST_URL2}`));
     await page.getByText("Send to Email").click();
     await page.getByText("Next").click();

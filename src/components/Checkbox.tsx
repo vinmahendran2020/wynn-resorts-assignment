@@ -1,7 +1,7 @@
-import React, { ForwardRefRenderFunction, ReactNode, forwardRef, useState } from 'react'
-import cn from './utils/classnames'
 import { CheckIcon } from '@/icons'
+import React, { ReactNode, useState } from 'react'
 import { UseFormRegister } from 'react-hook-form'
+import cn from './utils/classnames'
 
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean
