@@ -12,7 +12,9 @@ const Header = () => {
     <header className='h-30 bg-white w-full p-2 sm:p-4'>
       <Row className='items-center h-full w-full relative'>
         <Row className='md:w-32 mr-4'><Image alt="QR Code" src={logo} onClick={() => router.push('/registration/step1')}/></Row>
-        <Row className='xs:absolute xs:right-0 xs:top-1/2 xs:-translate-y-1/2 sm:w-full sm:justify-center'><NavBar/></Row>
+        <Row className='xs:absolute xs:right-0 xs:top-1/2 xs:-translate-y-1/2 sm:w-full sm:justify-center'>
+          <NavBar/>
+        </Row>
       </Row>
     </header>
   )

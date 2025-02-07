@@ -16,12 +16,12 @@ const NavBar = ({ className }: { className?: string }) => {
   const ref = useRef(null)
 
   const navItems = [
-    { name: "ROOMS & SUITES", path: "/rooms" },
-    { name: "WYNN REWARDS", path: "/rewards" },
-    { name: "OFFERS", path: "/offers" },
-    { name: "DINING", path: "/dining" },
-    { name: "ENTERTAINMENT", path: "/entertainment" },
-    { name: "MEETINGS & EVENTS", path: "/meetings" },
+    { name: "ROOMS & SUITES" },
+    { name: "WYNN REWARDS" },
+    { name: "OFFERS" },
+    { name: "DINING" },
+    { name: "ENTERTAINMENT" },
+    { name: "MEETINGS & EVENTS" },
   ]
 
   useOutsideClick({
@@ -45,12 +45,15 @@ const NavBar = ({ className }: { className?: string }) => {
               className="md:hidden bg-white border-t py-4"
             >
               <div className="flex flex-col space-y-4">
-                {navItems.map((item) => (
+                {navItems.map((item, index) => (
                   <Link
-                    key={item.path}
-                    href={item.path}
-                    className="text-black text-lg font-semibold px-4"
-                    onClick={() => setIsOpen(false)}
+                    key={index}
+                    href="#"
+                    className="text-black text-lg font-semibold px-4 hover:bg-green-180"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false)
+                    }}
                   >
                     {item.name}
                   </Link>
@@ -65,11 +68,10 @@ const NavBar = ({ className }: { className?: string }) => {
 
   return (
     <nav className={cn('flex justify-center space-x-8 py-4 bg-white', className)}>
-      {navItems.map((item) => (
-        <Link key={item.path} href={item.path} className="relative text-black font-semibold no-underline text-medium-b3">
+      {navItems.map((item, index) => (
+        <Link key={index} href='#' className="relative text-black font-semibold no-underline text-medium-b3 hover:border-b-2 hover:border-green-180">
           <span
-            className={`pb-1 transition-all duration-300 ${pathname === item.path ? "border-b-2 border-black" : "hover:border-b-2 hover:border-gray-400"
-              }`}
+            className={`pb-1 transition-all duration-300 border-b-2 border-black"`}
           >
             {item.name}
           </span>

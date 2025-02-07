@@ -80,7 +80,6 @@ const CountrySelector: FC<CountrySelectorProps> = ({
           openDropDown
             ? 'scale-100 opacity-100 pointer-events-auto'
             : 'scale-95 opacity-0 pointer-events-none',
-          'transition-opacity ease-in-out duration-300',
           className,
         )}
         onClick={() => setOpenDropdown(false)}

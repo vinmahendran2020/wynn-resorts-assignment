@@ -51,7 +51,7 @@ const OTPInput: FC<OTPInputProps> = ({ control, formState: { errors } }) => {
               ref={(el) => {
                 inputRefs.current[index] = el;
               }}
-              className={cn(errors[`otp${index}`] ? "!border-red-500" : "border-gray-400", 'w-12 h-12 text-center text-2xl border border-orange-180 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500')}
+              className={cn(errors[`otp${index}`] ? "!border-red-500" : "border-gray-400", 'w-16 h-16 text-center text-medium-h5 border border-orange-180 rounded-md focus:outline-none focus:ring-1 focus:ring-green-180')}
               onChange={(e) => {
                 field.onChange(e);
                 handleChange(e, index);

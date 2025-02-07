@@ -1,12 +1,13 @@
 'use client'
 
+import '@/../globals.css';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Newsletter from '@/components/NewsLetter';
+import GeneralToast from '@/components/toasts/GeneralToast';
+import ReduxProvider from '@/store/ReduxProvider';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { ReactNode, Suspense } from "react";
-import '@/../globals.css'
-import Header from '@/components/Header';
-import ReduxProvider from '@/store/ReduxProvider';
-import Newsletter from '@/components/NewsLetter';
-import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
@@ -39,6 +40,7 @@ export default function RootLayout({
         />
         <Suspense fallback={<> Loading </>}>
           <ReduxProvider>
+            <GeneralToast />
             <main className="flex flex-col gap-8 items-center sm:items-start h-full">
               <Header />
               <section className="w-full flex flex-col items-center justify-center">
